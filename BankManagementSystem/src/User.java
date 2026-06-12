@@ -1,9 +1,9 @@
 public class User {
 
     private final String username;
-    private final int pin;
+    private final String pin;
 
-    User(String username, int pin){
+    User(String username, String pin){
         this.username = username;
         this.pin = pin;
     }
@@ -12,7 +12,7 @@ public class User {
         return this.username;
     }
 
-    public int getPin(){
+    public String getPin(){
         return this.pin;
     }
 

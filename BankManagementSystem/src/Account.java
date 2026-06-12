@@ -1,18 +1,18 @@
 import java.io.Serializable;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Account implements Serializable {
 
-     Scanner scanner;
+     private final Scanner scanner;
      private final BankActivities b;
      String username;
      String pin;
      double balance;
 
-    Account(Scanner scanner, BankActivities b){
+
+    Account(Scanner scanner){
         this.scanner = scanner;
-        this.b = new BankActivities(scanner);
+        this.b = new BankActivities(scanner,0);
     }
 
     public void CreateAccount(){

@@ -7,6 +7,7 @@ public class SimpleBankManagementSystem {
         Account account = new Account(scanner);
 
 
+
         scanner.close();
 
     }
