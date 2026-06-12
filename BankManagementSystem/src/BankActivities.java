@@ -3,20 +3,17 @@ import java.util.Scanner;
 public class BankActivities {
 
     Scanner scanner;
-    private double balance;
+    Balance balance;
     double amount;
     int response;
     UserAuthentication userAuthentication;
 
-    BankActivities(Scanner scanner, double balance){
+    BankActivities(Scanner scanner, Balance balance){
         this.scanner = scanner;
         this.balance = balance;
         this.userAuthentication = new UserAuthentication(scanner);
     }
 
-    public void getBalance(double balance){
-        this.balance = balance;
-    }
 
     public void Menu(){
         System.out.println("1.Check Balance");
@@ -43,19 +40,19 @@ public class BankActivities {
     }
 
     public double checkBalance(){
-        return  balance;
+        return  balance.getBalance();
     }
 
     public void withdraw(){
         System.out.println("Enter the amount you want to withdraw: ");
         amount = scanner.nextDouble();
-        if(balance < amount){
+        if(balance.getBalance() < amount){
             System.out.println("Insufficient Balance!");
         }
         else{
-            balance -= amount;
+            balance.setBalance(balance.getBalance() - amount);
             System.out.println("You have successfully withdrawn " + amount);
-            System.out.println("Your new balance is " + balance);
+            System.out.println("Your new balance is " + balance.getBalance());
         }
 
     }
@@ -67,40 +64,46 @@ public class BankActivities {
             System.out.println("Minimum deposit of Rs.1000 \n please try again!");
         }
 
-        balance += amount;
+        balance.setBalance(balance.getBalance() + amount);
         System.out.println("You have successfully deposited " + amount);
-        System.out.println("Your new balance is " + balance);
+        System.out.println("Your new balance is " + balance.getBalance());
     }
 
     public void moneyTransfer(){
         System.out.println("Enter the amount ");
         amount = scanner.nextDouble();
-        if(balance < amount){
+        if(balance.getBalance() < amount){
             System.out.println("Insufficient Balance!");
         }
         else{
-            balance -= amount;
+            balance.setBalance(balance.getBalance() - amount);
             System.out.println("You have successfully transferred " + amount);
-            System.out.println("Your new balance is " + balance);
+            System.out.println("Your new balance is " + balance.getBalance());
         }
 
     }
 
     public void InterestCalculator() {
+
         double loanAmount = 0;
         System.out.println("1. Simple Interest on loan");
         System.out.println("2. Simple Interest on saving");
         System.out.print("Enter your choice: ");
         response = scanner.nextInt();
+
         if (response == 1) {
             System.out.print("Enter your loan amount: ");
             loanAmount = scanner.nextDouble();
             amount = (double) 10 / 100 * loanAmount;
             System.out.println("Your interest amount is " + amount);
-        } else if (response == 2) {
-            amount = (double) 8 / 100 * balance;
+        }
+
+        else if (response == 2) {
+            amount = (double) 8 / 100 * balance.getBalance();
             System.out.println("Your interest amount is " + amount);
-        } else {
+        }
+
+        else {
             System.out.println("Invalid choice.");
         }
 
