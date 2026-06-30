@@ -17,7 +17,6 @@ public class SimpleBankManagementSystem {
             account.Login();
         } else {
             System.out.println("Invalid choice.");
-            scanner.close();
             return;
         }
 
